@@ -4,7 +4,9 @@
   "description": "My Portfolio",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "backend": "nodemon server.js",
+    "frontend": "cd client && yarn start",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" ",
     "start": "node server.js"
   },
   "keywords": [
