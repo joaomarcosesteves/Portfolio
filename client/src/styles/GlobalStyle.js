@@ -8,9 +8,9 @@ const GlobalStyle= createGlobalStyle`
     }
 
     body{
-        background: #1b1b1b;
+        background: ${props => props.theme.backgroundColor};
         overflow-x: hidden; 
-        color: white;
+        color: ${props => props.theme.fontColor};
     }
 `
 export default GlobalStyle;
