@@ -219,8 +219,8 @@ const Slider = styled.span`
 `
 const MenuIcon = styled.label`
   position: relative;
-  width: 40px;
-  height: 30px;
+  width: 34px;
+  height: 24px;
   background: transparent;
   cursor: pointer;
   display: block;
@@ -238,7 +238,7 @@ const MenuIcon = styled.label`
     position: absolute;
     height: 4px;
     width: 100%;
-    background: black;
+    background: ${props => props.theme.fontColor};
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -276,7 +276,7 @@ const MenuIcon = styled.label`
     
     input:checked ~ span:nth-of-type(3) {
         transform: rotate(-45deg);
-        top: 28px;
+        top: 24.4px;
         left: 5px;
     }
 `

@@ -86,6 +86,10 @@ const Name = styled.h1`
     align-items: center;
     font-family: monospace;
     font-size: 30px;
+
+    @media (max-width: 767px){
+        font-size: 25px;
+    }
     
 `
 
@@ -98,6 +102,11 @@ const Title = styled.h4`
     font-size: 20px;
     margin-bottom: 7px;
     align-self: flex-start;
+
+    @media (max-width: 767px){
+        font-size: 16px
+    }
+
 `
 
 const Content = styled.p`    
@@ -108,6 +117,11 @@ const Content = styled.p`
     font-weight: 300;
     font-size: 16px;
     margin-bottom: 3rem;
+
+    @media (max-width: 767px){
+        font-size: 14px
+    }
+
 `
 
 const Img = styled.img`    
@@ -116,6 +130,11 @@ const Img = styled.img`
     object-fit: cover;
     border-radius: 100%;
     filter: drop-shadow(2px 4px 6px black);
+
+    @media (max-width: 767px){
+        height: 205px;
+        width: 205px;
+    }
 `
 const BtnLink = styled.a` 
     margin: 5rem 0px 2rem 0px;

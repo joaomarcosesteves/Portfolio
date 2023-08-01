@@ -24,7 +24,7 @@ const ProjectsGit = () => {
 
     return(
         <>
-        <div>
+        <Container>
             <h1> Projects GitHub: </h1>
                 <>
                 <ContainerCards>
@@ -73,11 +73,21 @@ const ProjectsGit = () => {
                     ))}
                 </ContainerCards>
                 </>
-        </div>
+        </Container>
         </>
     )
 }
 
+const Container = styled.div`    
+
+    @media (max-width: 767px){
+        width: 100%;    
+
+        h1{
+            font-size: 18pt;
+        }
+    }
+`
 const ContainerCards = styled.div`    
     display: -webkit-box;
     overflow-x: scroll;
@@ -96,6 +106,10 @@ const ContainerCards = styled.div`
     ::-webkit-scrollbar-thumb {
         border-radius: 20px;
         background: #888;
+    }
+
+    @media (max-width: 767px){
+        width: 100%;
     }
 `
 
