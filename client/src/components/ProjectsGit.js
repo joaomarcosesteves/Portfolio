@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import { NavLink } from "react-router-dom";
 
-import  {faCode, faBars, faUser, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import  { faBars, faUser, faChevronRight, faArrowsLeftRight, faUpRightFromSquare} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ProjectsGit = () => {
@@ -14,7 +15,7 @@ const ProjectsGit = () => {
           })
           .then(data => {
             setProjects(data)
-           //console.log(data)
+            console.log(data)
           })
       }
     
@@ -25,12 +26,12 @@ const ProjectsGit = () => {
     return(
         <>
         <Container>
-            <h1> Projects GitHub: </h1>
+            <h1> Projects GitHub: <FontAwesomeIcon icon={faArrowsLeftRight}  size='1x' /></h1>
                 <>
                 <ContainerCards>
                 {projects.map(item => (
                     <>
-                    <Card class="card">
+                    <Card class="card" key={item.name}>
                         <Tools class="tools">
                             <Circle class="circle">
                                 <Red class="red box"></Red>
@@ -43,7 +44,7 @@ const ProjectsGit = () => {
                             </Circle>
                         </Tools>
                         <CardContent>
-                            <Name> {item.name}</Name>
+                            <Name to={`${item.html_url}`} target="_blank">{item.name} <FontAwesomeIcon icon={faUpRightFromSquare} size='1x' /></Name>
                             <Description> 
                                 <FontAwesomeIcon icon={faBars} style={{color: "#ffffff"}} size='1x' />
                                 {item.description}
@@ -79,6 +80,16 @@ const ProjectsGit = () => {
 }
 
 const Container = styled.div`    
+
+    h1{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        svg{
+            margin-right: 10px;
+        }
+    }
 
     @media (max-width: 767px){
         width: 100%;    
@@ -204,9 +215,21 @@ const CardContent = styled.div`
     }
 `
 
-const Name = styled.h2`
-    color: #fff;
+const Name = styled(NavLink)`
+    color: rgb(255, 255, 255);
     cursor: pointer;
+    border-bottom: 1px solid white;
+    text-align: center;
+    padding: 5px 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-size: 15pt;
+    font-weight: 600;
 
     :hover ${Line} {
         opacity: 1;

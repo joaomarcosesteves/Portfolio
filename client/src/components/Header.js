@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
+import { NavLink } from "react-router-dom";
 
 const Header = ({themeToggler}) => {
     const [extendNavbar, setExtendNavbar] = useState(false)
@@ -31,25 +32,41 @@ const Header = ({themeToggler}) => {
       if (typeof window === 'undefined') return
   
       window.addEventListener('scroll', () => {
-        setIsScrolled(window.scrollY > 50)
+        setIsScrolled(window.scrollY > 10)
       })
     }, [])
 
-    const routes = {
-        Home: '<Home />',
-        About: '<About Me/>',
-        Contact: '<Contact />',
-    }
 
+    const routes = [
+        {
+            Name: '<Home />',
+            Route: '/'
+        },
+        {
+            Name: '<About Me/>',
+            Route: '/aboutme'
+        },
+        {
+            Name: '<Contact/>',
+            Route: '/contact'
+        },
+]
     return(
         <>
         <Navbar scroll={isScrolled} extendNavbar={extendNavbar}>
             <Section>
                 <Logo> jmep<span>.dev</span></Logo>
                 <LinksUrl>
-                    <a href='/'> {routes.Home} </a>
-                    <a href='/aboutme'> {routes.About} </a>
-                    <a href='/contact'> {routes.Contact} </a>
+                    {routes.map(item => (
+                        <NavLink
+                            to={`${item.Route}`} 
+                            style={({ isActive, isPending }) => {
+                                return {
+                                    color: isActive && "#507DB9",
+                                };
+                            }}                            
+                        >{item.Name}</NavLink>
+                    ))}
                     <Label class="switch">
                         <input type="checkbox" checked={checked} onChange={() => handleChange()}/>
                         <Slider/>
@@ -64,9 +81,19 @@ const Header = ({themeToggler}) => {
             </Section>
             {extendNavbar && (
                 <LinksUrlMobile>
-                    <a href='/'> {routes.Home} </a>
-                    <a href='/aboutme'> {routes.About} </a>
-                    <a href='/contact'> {routes.Contact} </a>
+                    {/* {routes.map(item => (
+                        <NavLink
+                            to={`${item.Route}`} 
+                            style={({ isActive, isPending }) => {
+                                return {
+                                    color: isActive && "#507DB9",
+                                };
+                            }}                            
+                        >{item.Name}</NavLink>
+                    ))} */}
+                    <a href='/'> {routes[0].Name} </a>
+                    <a href='/aboutme'> {routes[1].Name} </a>
+                    <a href='/contact'> {routes[2].Name} </a> 
                     <Label class="switch">
                         <input type="checkbox" checked={checked} onChange={() => handleChange()}/>
                         <Slider/>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
-import  {faGithub, faLinkedin, faInstagram} from '@fortawesome/free-brands-svg-icons'
+import SocialLinks from '../components/socialLinks'
 import  {faComment, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -53,14 +53,7 @@ const ContactMe = () => {
                     <span>Choose the best way for you</span>
                 </Title>
 
-                <Show>
-                    <a href='https://www.linkedin.com/in/joao-marcos-esteves-pereira-a5b2b317a/'> 
-                            <FontAwesomeIcon icon={faLinkedin} size='4x' />
-                    </a>
-                    <a href='https://github.com/joaomarcosesteves'> 
-                        <FontAwesomeIcon icon={faGithub} size='4x' />
-                    </a>
-                </Show>
+                <SocialLinks size={'4x'}/>
             </Size>
              <Box>
                 <Form onSubmit={contactMeHandler}>
@@ -106,13 +99,22 @@ const ContactMe = () => {
 const Section = styled.div`
     display: flex;
     place-content: center;
-    height: 91vh;
+    height: 100vh;
     align-self: center;
     justify-content: space-evenly;
     align-self: center;
     align-items: center;
 
+    @media (max-width: 1024px){
+        flex-direction: column;
+        height: auto;
+        margin: 7rem 0 1.5rem 0;
+        gap: 3rem;
+    }
+
 `
+
+
 
 const Size = styled.div`
     display: flex;
@@ -120,6 +122,20 @@ const Size = styled.div`
     place-content: center;
     width: 100%;
     gap: 3rem;
+
+    div:nth-child(2) {
+        width: 100%;
+        place-content: center;
+        gap: 3rem;
+
+        @media (max-width: 767px){
+            margin: 0;
+
+            svg{
+                font-size: 3rem;
+            }
+        }
+    }
 
 `
 
@@ -131,12 +147,26 @@ const FormTitle = styled.span`
         justify-content: center;
         font-size: 18pt;
 
+        @media (max-width: 767px){
+            font-size: 14pt
+        }
+        
 `
 const Title = styled.div` 
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 28pt;
+    text-align: center;
+
+    span:first-child {
+        font-weight: bold;
+        text-shadow: 1px 1px black;
+    }
+
+    @media (max-width: 767px){
+        font-size: 22pt
+    }
 `  
 
 const Label = styled.label` 
@@ -147,6 +177,10 @@ const Label = styled.label`
         font-size: 16px;
         pointer-events: none;
         transition: .5s;
+
+        @media (max-width: 767px){
+            font-size: 10pt
+        }
 `  
 
 const UserBox = styled.div` 
@@ -163,6 +197,10 @@ const UserBox = styled.div`
         border-bottom: 1px solid ${props => props.theme.fontColor};
         outline: none;
         background: transparent;
+
+        @media (max-width: 767px){
+            font-size: 10pt;
+        }
     }
 
         input:focus ${Label},
@@ -211,6 +249,11 @@ const Form = styled.form`
     @media (max-width: 1500px) {
         padding: 4rem;
         font-size: 1rem;
+    }
+
+    @media (max-width: 767px) {
+            padding: 2rem 1rem;
+            width: 100%;
     }
 `;
 

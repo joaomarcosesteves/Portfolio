@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { Link } from "react-router-dom";
 
 import InfiniteScroll from '../components/infiniteScroll'
+import SocialLinks from '../components/socialLinks'
 import styled from 'styled-components'
-import  {faGithub, faLinkedinIn, faInstagram} from '@fortawesome/free-brands-svg-icons'
 import  {faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -15,6 +16,18 @@ import css from '../../src/assets/css.png'
 
 
 const Home = () => {
+    const [isScrolled, setIsScrolled] = useState(false)
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return
+    
+        window.addEventListener('scroll', () => {
+          setIsScrolled(window.scrollY > 20)
+        })
+      }, [])
+
+
+
     return(
         <>
         <Section>
@@ -27,20 +40,14 @@ const Home = () => {
                     I'm a <TextAnimation/> Developer <br/>
                 </ShowHighlight>
                 <Paragraph>
-                    Always trying to learn, so I can develop solutions with my stacks to help as many people as possible, 
-                    this is my vocation. <br/> Passionate about what we can do, there are no limits, only knowledge, daring, and creativity.
+                    Developing, debugging, learning, helping people realize their ideas. <br/> 
+                    This is my goal, my vocation and who I am. <br/>
+                    I am always trying to be something more.    
                 </Paragraph>
-                <LinksUrl>
-                    <a href='https://www.linkedin.com/in/joao-marcos-esteves-pereira-a5b2b317a/'> 
-                        <FontAwesomeIcon icon={faLinkedinIn} size='2x' />
-                    </a>
-                    <a href='https://github.com/joaomarcosesteves'> 
-                        <FontAwesomeIcon icon={faGithub} size='2x' />
-                    </a>
-                </LinksUrl>
+                <SocialLinks size={'2x'}/>
             </DivColumCenter>
             <Img src={devimg} alt='img'/>
-            <Scrolldown class="scrolldown">
+            <Scrolldown class="scrolldown" scroll={isScrolled}>
                 <Chevrons class="chevrons">
                     <Chevrondown class="chevrondown"></Chevrondown>
                     <Chevrondown class="chevrondown"></Chevrondown>
@@ -52,19 +59,19 @@ const Home = () => {
             <DivColumCenter>
                 <TitleStacks> Top Stacks </TitleStacks>   
                 <StacksContainer>
-                    <EachStack  href='https://react.dev/'>
+                    <EachStack  href='https://react.dev/' target='_blank' rel="noreferrer">
                         <Stacks src={react} alt='React.js'/>
                     </EachStack>
-                    <EachStack  href='https://nodejs.org/en'>
+                    <EachStack  href='https://nodejs.org/en' target='_blank' rel="noreferrer">
                         <Stacks src={node} alt='Node.js'/>
                     </EachStack>
-                    <EachStack  href='https://www.javascript.com/'>
+                    <EachStack  href='https://www.javascript.com/' target='_blank' rel="noreferrer">
                         <Stacks src={javascript} alt='Javascript'/>
                     </EachStack>
-                    <EachStack  href='https://www.typescriptlang.org/'>
+                    <EachStack  href='https://www.typescriptlang.org/' target='_blank' rel="noreferrer">
                         <Stacks src={typescript} alt='Typescript'/>
                     </EachStack>
-                    <EachStack  href='https://www.w3.org/Style/CSS/Overview.en.html'>
+                    <EachStack  href='https://www.w3.org/Style/CSS/Overview.en.html' target='_blank' rel="noreferrer">
                         <Stacks src={css} alt='CSS'/>
                     </EachStack>
                 </StacksContainer>
@@ -74,8 +81,8 @@ const Home = () => {
                 <div>
                         <InfiniteScroll/>
                 </div>
-
-                <BtnLink href='/aboutme'>
+                
+                <BtnLink to='/aboutme'>
                     <p>Learn more about me </p>
                     <FontAwesomeIcon icon={faArrowRight} size='1x' />
                 </BtnLink>
@@ -107,6 +114,13 @@ const Section = styled.div`
 `
 
 const Scrolldown = styled.div` 
+    ${({ scroll }) => scroll && `
+    display: none;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+  `}
+
+    display: block;
     --color: skyblue;
     --sizeX: 20px;
     --sizeY: 30px;
@@ -209,6 +223,7 @@ const Show = styled.p`
     font-family: monospace;
     font-weight: 500;
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: justify;
     text-align: justify;
@@ -228,6 +243,7 @@ const Show = styled.p`
 const Paragraph = styled(Show)`
     max-width: 740px;
     align-self: flex-start;
+    text-align: left;
 `
 
 const TitleStacks = styled.span` 
@@ -240,11 +256,7 @@ const SubtitleStacks = styled.span`
     font-size: 15pt;
 `
 
-const LinkSpan = styled.span` 
-    margin: 5rem 0px 2rem 0px;
-    font-size: 12pt;
-`
-const BtnLink = styled.a` 
+const BtnLink = styled(Link)` 
     margin: 5rem 0px 2rem 0px;
     font-size: 12pt;
     padding: 0;
@@ -402,7 +414,7 @@ const StackSection = styled(Section)`
     }
 
     @media (max-width: 767px){
-        height: 100vh;
+        
     }
 `
 
@@ -416,22 +428,6 @@ const StacksContainer = styled.div`
     font-family: monospace;
 `
 
-const LinksUrl = styled.div`    
-    display: flex;
-    justify-content: justify;
-    align-items: center;
-    gap: 1rem; 
-    margin-top: 1.5rem;
-    align-self: self-start;  
-
-    a{
-        color: ${props => props.theme.fontColor}
-    }
-
-    a:hover{
-        filter: drop-shadow(0px 1px 1px black);
-    }
-`
 
 const Img = styled.img`    
     height: 40%;

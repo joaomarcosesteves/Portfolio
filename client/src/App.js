@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled, {ThemeProvider} from 'styled-components'
 import usePersistedState from './utils/usePersistedState';
 import GlobalStyle from './styles/GlobalStyle';
@@ -14,9 +14,10 @@ import ContactMe from './pages/ContactMe'
 import Home from './pages/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './utils/scrollToTop'
 
 function App() {
-  const [theme, setTheme] = usePersistedState('theme', 'dark')
+  const [theme, setTheme] = usePersistedState('theme', 'light')
 
   const themeToggler = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -26,17 +27,19 @@ function App() {
     <div>
       <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
 
-          <Header themeToggler={themeToggler}/>
-        <Main>
-        <GlobalStyle/>
           <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/aboutme" element={<AboutMe />} />
-                <Route path="/contact" element={<ContactMe />} />
-            </Routes>
+              <Header themeToggler={themeToggler}/>
+              <Main>
+              <GlobalStyle/>
+              <ScrollToTop>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/aboutme" element={<AboutMe />} />
+                    <Route path="/contact" element={<ContactMe />} />
+                </Routes>
+              </ScrollToTop>
+              </Main>
           </BrowserRouter>  
-        </Main>
           <Footer/>
         </ThemeProvider>
     </div>
