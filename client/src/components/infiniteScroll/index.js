@@ -1,8 +1,7 @@
 import React from 'https://cdn.skypack.dev/react';
 import styled from 'styled-components'
 
-const COLORS = ['#bbf7d0', '#99f6e4', '#bfdbfe', '#ddd6fe', '#f5d0fe', '#fed7aa', '#fee2e2'];
-const TAGS = ['HTML', 'SCSS', 'JavaScript', 'Typescript', 'Tailwind', 'React.js', 'Next.js', 'Styled Components', 'VTEX.IO', 'GraphQL', 'JSON', 'Redux', 'ContextAPI'];
+const TAGS = ['HTML', 'SCSS', 'JavaScript', 'Typescript', 'React.js', 'Next.js', 'Styled Components', 'Tailwind', 'VTEX.IO', 'GraphQL', 'Redux', 'ContextAPI', 'React-Native', 'MongoDB' ];
 const DURATION = 15000;
 const ROWS = 3;
 const TAGS_PER_ROW = 10;

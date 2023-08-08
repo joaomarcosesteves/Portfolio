@@ -8,10 +8,10 @@ const Header = ({themeToggler}) => {
     const [checked, setChecked] = useState(() => {
         const storageValue = localStorage.getItem("theme");
 
-        if (JSON.parse(storageValue) === 'light') {
-            return true
-        } else {
+        if (JSON.parse(storageValue) === 'dark') {
             return false
+        } else {
+            return true
         }
     })
 
@@ -59,6 +59,7 @@ const Header = ({themeToggler}) => {
                 <LinksUrl>
                     {routes.map(item => (
                         <NavLink
+                            key={`${item.Name}`}
                             to={`${item.Route}`} 
                             style={({ isActive, isPending }) => {
                                 return {
@@ -67,12 +68,12 @@ const Header = ({themeToggler}) => {
                             }}                            
                         >{item.Name}</NavLink>
                     ))}
-                    <Label class="switch">
+                    <Label className="switch">
                         <input type="checkbox" checked={checked} onChange={() => handleChange()}/>
                         <Slider/>
                     </Label>
                 </LinksUrl>
-                <MenuIcon class="burger" for="burger">
+                <MenuIcon className="burger" >
                     <input type="checkbox" id="burger" onChange={() => handleCheckMenu()}/>
                     <span></span>
                     <span></span>
@@ -94,7 +95,7 @@ const Header = ({themeToggler}) => {
                     <a href='/'> {routes[0].Name} </a>
                     <a href='/aboutme'> {routes[1].Name} </a>
                     <a href='/contact'> {routes[2].Name} </a> 
-                    <Label class="switch">
+                    <Label className="switch">
                         <input type="checkbox" checked={checked} onChange={() => handleChange()}/>
                         <Slider/>
                     </Label>

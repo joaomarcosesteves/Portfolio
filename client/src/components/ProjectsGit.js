@@ -15,7 +15,7 @@ const ProjectsGit = () => {
           })
           .then(data => {
             setProjects(data)
-            console.log(data)
+            //console.log(data)
           })
       }
     
@@ -31,16 +31,16 @@ const ProjectsGit = () => {
                 <ContainerCards>
                 {projects.map(item => (
                     <>
-                    <Card class="card" key={item.name}>
-                        <Tools class="tools">
-                            <Circle class="circle">
-                                <Red class="red box"></Red>
+                    <Card className="card" key={item.id}>
+                        <Tools className="tools">
+                            <Circle className="circle">
+                                <Red className="red box"></Red>
                             </Circle>
-                            <Circle class="circle">
-                                <Yellow class="yellow box"></Yellow>
+                            <Circle className="circle">
+                                <Yellow className="yellow box"></Yellow>
                             </Circle>
-                            <Circle class="circle">
-                                <Green class="green box"></Green>
+                            <Circle className="circle">
+                                <Green className="green box"></Green>
                             </Circle>
                         </Tools>
                         <CardContent>
@@ -65,7 +65,7 @@ const ProjectsGit = () => {
 
                             <Tecs>
                                 {item.topics.map(tec => (
-                                    <span>#{tec}</span>
+                                    <span key={tec}>#{tec}</span>
                                 ))}
                             </Tecs>
                         </CardContent>

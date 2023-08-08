@@ -20,7 +20,7 @@ function App() {
   const [theme, setTheme] = usePersistedState('theme', 'light')
 
   const themeToggler = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
   return (

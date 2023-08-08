@@ -47,10 +47,10 @@ const Home = () => {
                 <SocialLinks size={'2x'}/>
             </DivColumCenter>
             <Img src={devimg} alt='img'/>
-            <Scrolldown class="scrolldown" scroll={isScrolled}>
-                <Chevrons class="chevrons">
-                    <Chevrondown class="chevrondown"></Chevrondown>
-                    <Chevrondown class="chevrondown"></Chevrondown>
+            <Scrolldown className="scrolldown" scroll={isScrolled}>
+                <Chevrons className="chevrons">
+                    <Chevrondown className="chevrondown"></Chevrondown>
+                    <Chevrondown className="chevrondown"></Chevrondown>
                 </Chevrons>
             </Scrolldown>
         </Section>
