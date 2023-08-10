@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "backend": "nodemon server.js",
-    "frontend": "cd client && yarn start",
+    "frontend": "yarn start --prefix client",
     "dev": "concurrently \"npm run backend\" \"npm run frontend\" ",
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [
     "MERNE",

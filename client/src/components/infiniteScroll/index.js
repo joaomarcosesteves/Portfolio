@@ -1,4 +1,4 @@
-import React from 'https://cdn.skypack.dev/react';
+import React from 'react';
 import styled from 'styled-components'
 
 const TAGS = ['HTML', 'SCSS', 'JavaScript', 'Typescript', 'React.js', 'Next.js', 'Styled Components', 'Tailwind', 'VTEX.IO', 'GraphQL', 'Redux', 'ContextAPI', 'React-Native', 'MongoDB' ];

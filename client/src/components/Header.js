@@ -127,6 +127,7 @@ const Navbar = styled.header`
 `
 
 const Section = styled.div`    
+    @import url('https://fonts.googleapis.com/css2?family=Rancho&display=swap');
     height: 5rem;
     display: flex;
     align-items: center;
@@ -183,9 +184,8 @@ const LinksUrlMobile = styled.ul`
 `
 
 const Logo = styled.span`
-    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
     font-size: 22pt;
-    font-family: 'Righteous', cursive;
+    font-family: 'Quicksand', sans-serif;
 
     span {
         color: #507DB9;

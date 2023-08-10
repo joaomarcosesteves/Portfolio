@@ -32,12 +32,11 @@ const Section = styled.div`
 `
 
 const Logo = styled.p`    
-    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
     font-size: 22pt;
-    font-family: 'Righteous', cursive;
+    font-family: 'Quicksand', sans-serif;
 
     span {
-        color: ${props => props.theme.secondary};
+        color: #507DB9;
     }
 `
 
