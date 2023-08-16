@@ -227,18 +227,6 @@ const UserBox = styled.div`
         font-size: 12px;
     }
 `  
-const Show = styled.div`    
-    display: flex;
-    align-self: center;
-    gap: 3rem;
-    font-size: 16px;
-    -webkit-box-align: center;
-    align-items: center;
-
-    svg {
-        color: ${props => props.theme.fontColor};
-    }
-`
 
 const Form = styled.form`
     margin: 0px auto;

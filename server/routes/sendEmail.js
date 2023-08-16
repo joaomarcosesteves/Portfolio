@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
 
       transporter.sendMail(mailBody, function(error, info){
         if (error) {
-            res.status(info.response).json('error')
+            res.status(504).json('error, try again or contact your admin')
             console.log(error);
         } else {
             res.status(200).json('email send')
