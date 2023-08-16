@@ -1,95 +1,34 @@
-import React, {useEffect, useState} from 'react'
-import { Link } from "react-router-dom";
-
-import InfiniteScroll from '../components/infiniteScroll'
-import SocialLinks from '../components/socialLinks'
+import React from 'react'
 import styled from 'styled-components'
-import  {faArrowRight} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import SocialLinks from '../components/socialLinks'
+import Chevron from '../components/Chevron';
+import TopStacks from '../components/TopStacks';
 import devimg from '../../src/assets/img.webp' 
-import javascript from '../../src/assets/javascript.png'
-import typescript from '../../src/assets/Typescript.png'
-import react from '../../src/assets/React-icon.png'
-import node from '../../src/assets/nodejs.png'
-import css from '../../src/assets/css.png'
-
 
 const Home = () => {
-    const [isScrolled, setIsScrolled] = useState(false)
-
-    useEffect(() => {
-        if (typeof window === 'undefined') return
-    
-        window.addEventListener('scroll', () => {
-          setIsScrolled(window.scrollY > 20)
-        })
-      }, [])
-
-
-
     return(
         <>
-        <Section>
-            <DivColumCenter>
-                <Show>
-                   <span> Hello, World!  </span>
-                    My name is João..  
-                </Show>
-                <ShowHighlight>
-                    I'm a <TextAnimation/> Developer <br/>
-                </ShowHighlight>
-                <Paragraph>
-                    Developing, debugging, learning, helping people realize their ideas. <br/> 
-                    This is my goal, my vocation and who I am. <br/>
-                    I am always trying to be something more.    
-                </Paragraph>
-                <SocialLinks size={'2x'}/>
-            </DivColumCenter>
-            <Img src={devimg} alt='img'/>
-            <Scrolldown className="scrolldown" scroll={isScrolled}>
-                <Chevrons className="chevrons">
-                    <Chevrondown className="chevrondown"></Chevrondown>
-                    <Chevrondown className="chevrondown"></Chevrondown>
-                </Chevrons>
-            </Scrolldown>
-        </Section>
-
-        <StackSection>
-            <DivColumCenter>
-                <TitleStacks> Top Stacks </TitleStacks>   
-                <StacksContainer>
-                    <EachStack  href='https://react.dev/' target='_blank' rel="noreferrer">
-                        <Stacks src={react} alt='React.js'/>
-                    </EachStack>
-                    <EachStack  href='https://nodejs.org/en' target='_blank' rel="noreferrer">
-                        <Stacks src={node} alt='Node.js'/>
-                    </EachStack>
-                    <EachStack  href='https://www.javascript.com/' target='_blank' rel="noreferrer">
-                        <Stacks src={javascript} alt='Javascript'/>
-                    </EachStack>
-                    <EachStack  href='https://www.typescriptlang.org/' target='_blank' rel="noreferrer">
-                        <Stacks src={typescript} alt='Typescript'/>
-                    </EachStack>
-                    <EachStack  href='https://www.w3.org/Style/CSS/Overview.en.html' target='_blank' rel="noreferrer">
-                        <Stacks src={css} alt='CSS'/>
-                    </EachStack>
-                </StacksContainer>
-
-                <SubtitleStacks>Others already used</SubtitleStacks>
-
-                <div>
-                        <InfiniteScroll/>
-                </div>
-                
-                <BtnLink to='/aboutme'>
-                    <p>Learn more about me </p>
-                    <FontAwesomeIcon icon={faArrowRight} size='1x' />
-                </BtnLink>
-
-            </DivColumCenter>
-
-        </StackSection>
+            <Section>
+                <DivColumCenter>
+                    <Show>
+                    <span> Hello, World!  </span>
+                        My name is João..  
+                    </Show>
+                    <ShowHighlight>
+                        I'm a <TextAnimation/> Developer <br/>
+                    </ShowHighlight>
+                    <Paragraph>
+                        Developing, debugging, learning, helping people realize their ideas. <br/> 
+                        This is my goal, my vocation and who I am. <br/>
+                        I am always trying to be something more.    
+                    </Paragraph>
+                    <SocialLinks size={'2x'}/>
+                </DivColumCenter>
+                <Img src={devimg} alt='img'/>
+                <Chevron/>
+            </Section>
+            <TopStacks/>
         </>
     )
 }
@@ -112,112 +51,6 @@ const Section = styled.div`
 
 
 `
-
-const Scrolldown = styled.div` 
-    ${({ scroll }) => scroll && `
-    display: none;
-    transition: opacity 1s ease-out;
-    opacity: 0;
-  `}
-
-    display: block;
-    --color: skyblue;
-    --sizeX: 20px;
-    --sizeY: 30px;
-    position: absolute;
-    width: var(--sizeX);
-    height: var(--sizeY);
-    border: calc(var(--sizeX) / 10) solid var(--color);
-    border-radius: 50px;
-    box-sizing: border-box;
-    margin-bottom: 16px;
-    cursor: pointer;
-    bottom: 15px;
-
-    ::before {
-        content: "";
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        width: 6px;
-        height: 6px;
-        margin-left: -3px;
-        background-color: var(--color);
-        border-radius: 100%;
-        animation: 2s ease 0s infinite normal none running scrolldown-anim;
-        box-sizing: border-box;
-        box-shadow: rgba(42, 84, 112, 0.4) 0px -5px 3px 1px;
-    }
-
-        @keyframes scrolldown-anim {
-            0% {
-                opacity: 0;
-                height: 6px;
-            }
-
-            40% {
-                opacity: 1;
-                height: 10px;
-            }
-
-            80% {
-                transform: translate(0, 20px);
-                height: 10px;
-                opacity: 0;
-            }
-
-            100% {
-                height: 3px;
-                opacity: 0;
-            }
-        }
-
-        @media (min-width: 767px){
-            display: none
-        }
-
-`
-
-const Chevrons = styled.div` 
-    padding: 6px 0px 0px;
-    margin-left: -3px;
-    margin-top: 30px;
-    width: 21px;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-align: center;
-    align-items: center;
-`
-
-const Chevrondown = styled.div` 
-    margin-top: -6px;
-  position: relative;
-  border: solid var(--color);
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg);
-
-  :nth-child(odd) {
-        animation: pulse54012 500ms ease infinite alternate;
-    }
-
-    :nth-child(even) {
-        animation: pulse54012 500ms ease infinite alternate 250ms;
-    }
-
-    @keyframes pulse54012 {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 0.5;
-        }
-    }
-`
-
 
 const Show = styled.p` 
     font-family: monospace;
@@ -246,84 +79,7 @@ const Paragraph = styled(Show)`
     text-align: left;
 `
 
-const TitleStacks = styled.span` 
-    font-size: 25pt;
-    font-family: monospace;
-`
 
-const SubtitleStacks = styled.span` 
-    margin-bottom: 1rem;
-    font-size: 15pt;
-`
-
-const BtnLink = styled(Link)` 
-    margin: 5rem 0px 2rem 0px;
-    font-size: 12pt;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    text-decoration: none;
-
-    --primary-color: ${props => props.theme.fontColor};
-    --hovered-color: ${props => props.theme.secondary};
-    position: relative;
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-
-    p {
-        margin: 0;
-        position: relative;
-        font-size: 12pt;
-        font-family: monospace;
-        color: var(--primary-color)
-    }
-
-    ::after {
-        position: absolute;
-        content: "";
-        width: 0;
-        left: 0;
-        bottom: -7px;
-        background: var(--hovered-color);
-        height: 2px;
-        transition: 0.3s ease-out;
-    }
-
-    p::before {
-        position: absolute;
-        /*   box-sizing: border-box; */
-        content: "";
-        width: 0%;
-        inset: 0;
-        color: var(--hovered-color);
-        overflow: hidden;
-        transition: 0.3s ease-out;
-    }
-
-    :hover::after {
-        width: 100%;
-    }
-
-    :hover p::before {
-        width: 100%;
-    }
-
-    :hover svg {
-        transform: translateX(4px);
-        color: var(--hovered-color);
-        fill: var(--hovered-color);
-    }
-
-    svg {
-        color: var(--primary-color);
-        transition: 0.2s;
-        position: relative;
-        width: 15px;
-        transition-delay: 0.2s;
-    }
-`
 const ShowHighlight = styled.p` 
     font-size: 30px;
     font-family: monospace;
@@ -404,31 +160,6 @@ const TextAnimation = styled.span`
     }
 `
 
-const StackSection = styled(Section)`
-    flex-direction: column;
-    justify-content: space-evenly;
-    font-family: monospace;
-    height: auto;
-    h1{
-        font-family: monospace;
-    }
-
-    @media (max-width: 767px){
-        
-    }
-`
-
-const StacksContainer = styled.div`    
-    display: flex;
-    flex-flow: row wrap;
-    -webkit-box-pack: center;
-    justify-content: center;
-    gap: 1rem;
-    margin: 3rem 0px 5rem 0px;
-    font-family: monospace;
-`
-
-
 const Img = styled.img`    
     height: 40%;
 
@@ -442,49 +173,11 @@ const Img = styled.img`
     
 `
 
-const Stacks = styled.img`    
-    height: 100px;
-    font-family: monospace;
-    filter: saturate(0);
-
-    :hover{
-        filter: drop-shadow(2px 4px 6px black);
-        cursor: pointer;
-    }
-
-    @media (max-width: 767px){
-        height: 60px;
-        font-family: monospace;
-        filter: drop-shadow(black 0px 0px 0px);
-    }
-    
-`
-
 const DivColumCenter = styled.div`    
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 `
-
-const EachStack = styled.a`    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    margin: 1rem 3rem;
-    font-family: monospace;
-    span{
-        display: none;
-    }
-
-    @media (max-width: 767px){
-        margin: 1rem;
-        font-family: monospace;
-        filter: drop-shadow(1px 1px 1px black);
-    }
-`
-
-
 
 export default Home

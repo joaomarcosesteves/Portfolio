@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import moment from 'moment'
+import axios from 'axios'
 import styled from 'styled-components'
 import SocialLinks from '../components/socialLinks'
 import  {faComment, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
@@ -19,7 +20,7 @@ const ContactMe = () => {
         setMessage('')
     }
 
-    const contactMeHandler = async (e) => {
+    const contactMeHandler = (e) => {
         e.preventDefault()
 
         if ( name === '' || email === '' || message === '') {
@@ -27,21 +28,20 @@ const ContactMe = () => {
             return
         }
 
-        const data = {
-            Nome: name,
-            Email: email,
-            Mensagem: message,
-            Data: moment().format('DD/MM/YYYY'),
-        }
-
-        if (data) {
-            console.log(data)
-            resetForm();
-        }
-        else {
-            console.log("Erro, favor tentar novamente!")
+        axios.post('/api/sendemail', {
+            name: name,
+            email: email,
+            message: message,
+            date: moment().format('DD/MM/YYYY, hh:mm')
+        }).then((result) => {
+            //console.log(result)
+            setSucesso(true);
+            resetForm()
+        })
+        .catch((err) => {
             setErro(true)
-        }
+            console.log(err)
+        })
     }
 
     return(
@@ -86,8 +86,8 @@ const ContactMe = () => {
                         <Label>Message</Label>
                     </UserBox>
                     <button type="submit"> SEND <FontAwesomeIcon icon={faPaperPlane} fade size='1x' /> <span/></button>
-                    {sucesso && <h4>Mensagem enviada com sucesso!</h4>}
-                    {erro && <h4>Ocorreu um erro, por favor envie novamente!</h4>}
+                    {sucesso && <FeedbackForm>Message sent successfully :)</FeedbackForm>}
+                    {erro && <FeedbackFormBad>oh no, there was an error :( try again!</FeedbackFormBad>}
                 </Form>
              </Box>
 
@@ -151,6 +151,22 @@ const FormTitle = styled.span`
             font-size: 14pt
         }
         
+`
+
+const FeedbackForm = styled.h4`
+    margin: 1rem;
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+    color: #8bf38b;
+`
+
+const FeedbackFormBad = styled.h4`
+    margin: 1rem;
+    text-align: center;
+    font-weight: 500;
+    font-style: italic;
+    color: rgb(157 37 37);
 `
 const Title = styled.div` 
     display: flex;

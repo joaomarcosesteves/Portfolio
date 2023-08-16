@@ -12,8 +12,8 @@ import {
 import AboutMe from './pages/AboutMe'
 import ContactMe from './pages/ContactMe'
 import Home from './pages/Home'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import ScrollToTop from './utils/scrollToTop'
 
 function App() {
@@ -33,9 +33,9 @@ function App() {
               <GlobalStyle/>
               <ScrollToTop>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/aboutme" element={<AboutMe />} />
-                    <Route path="/contact" element={<ContactMe />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/aboutme" element={<AboutMe />} />
+                  <Route path="/contact" element={<ContactMe />} />
                 </Routes>
               </ScrollToTop>
               </Main>

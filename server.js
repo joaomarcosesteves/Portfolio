@@ -1,6 +1,6 @@
 require('dotenv').config()
 require('./server/mongo/mongoConnection')
-const express = require('express');
+const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const api = require('./server/routes')
@@ -17,9 +17,6 @@ if ( process.env.NODE_ENV === 'production' ) {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
-
-
-
 
 const PORT = process.env.PORT
 app.listen(PORT)

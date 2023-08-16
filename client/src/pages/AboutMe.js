@@ -1,8 +1,8 @@
 import React from 'react'
-import ProjectsGit from '../components/ProjectsGit'
+import ProjectsGit from '../components/ProjectsGit/ProjectsGit'
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
-import devimg from '../../src/assets/eu.jpg'
+import devimg from '../../src/assets/eu3.png'
 import  {faArrowRight, faUpRightFromSquare} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

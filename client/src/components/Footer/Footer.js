@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import SocialLinks from '../components/socialLinks'
+import SocialLinks from '../socialLinks'
 
 const Footer = () => {
     return(
